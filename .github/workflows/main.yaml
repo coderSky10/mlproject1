@@ -79,14 +79,14 @@ jobs:
         id: build-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR REPOSITORY: $(( secrets.ECR_REPOSITORY NAME }}
+          ECR REPOSITORY: $(( secrets.ECR_REPOSITORY_NAME }}
           IMAGE TAG: latest
         run:
          # Build a docker container and
          # push it to ECR so that it can
          # be deployed to ECS.
-         docker build - SECR REGISTRY/SECR_REPOSITORY:$IMAGE_TAG
-         docker push $ECR_REGISTRY/SECR_REPOSITORY:$IMAGE TAG
+         docker build - $ECR REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"  
   Continuous-Deployment:
     needs: build-and-push-ecr-image
